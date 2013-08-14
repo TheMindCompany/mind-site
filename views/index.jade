@@ -1,0 +1,184 @@
+extends layout
+block content
+  #home.hero.bg-fixed.bg-color
+    .slogan
+      .vcenter.container
+        .row
+          .span12
+            img.logo-img(src='images/logo.png')
+            h1.logo-text We Think!
+  #news.section
+    .container
+      .content
+        .row
+          .title
+            h2 What Is New
+            .hr.hr-small.hr-center
+              span.hr-inner
+            p In the business of thinking.
+        .row
+          #blog.span4
+            .center
+              a(href='blog')
+                img(src='images/blog.png')
+            h3 
+              center Our Blog
+            .hr.hr-small.hr-center
+              span.hr-inner
+            .text-block.news-height
+              if(last_blog)
+                .title
+                  a(href='#{last_blog.title}')
+                    h5 #{last_blog.title}
+                p #{last_blog.article}
+            .hr.hr-small.hr-center
+              span.hr-inner
+            .float-r
+              a.more(href='blog') More 
+                img(src='images/right-arrow.png')
+            br
+            br
+            br
+          #tuts.span4
+            .center
+              a(href='tutorials')
+                img(src='images/tuts.png')
+            h3 
+              center Tutorials
+            .hr.hr-small.hr-center
+              span.hr-inner
+            .text-block.news-height
+              if(last_tut)
+                .title
+                  a(href='#{last_tut.title}')
+                    h5 #{last_tut.title}
+              if(last_tut.article)
+                p #{last_tut.article}
+            .hr.hr-small.hr-center
+              span.hr-inner
+            .float-r
+              a.more(href='tutorials') More 
+                img(src='images/right-arrow.png')
+            br
+            br
+            br
+          #labs.span4
+            .center
+              a(href='laboratory')
+                img(src='images/lab.png')
+            h3 
+              center Laboratory
+            .hr.hr-small.hr-center
+              span.hr-inner
+            .text-block.news-height
+              if(last_lab)
+                .title
+                  a(href='#{last_lab.title}')
+                    h5 #{last_lab.title}
+              if(last_lab.article)
+                p #{last_lab.article}
+            .hr.hr-small.hr-center
+              span.hr-inner
+            .float-r
+              a.more(href='laboratory') More 
+                img(src='images/right-arrow.png')
+  #aboutus.section.section-alt
+    .container
+      .content
+        .row
+          .span12
+            .title-l
+              h2 About 
+              .hr.hr-small.hr-left
+                span.hr-inner
+              p We are technology explorers and creators.
+            p.text-block Our plans over the next year include the development of several 
+              | applications and a framework to facilitate innovative ideas by our employees.
+            img.float-l.img(src='images/key.png')
+            p.text-block We plan on releasing  a survey service by late September of
+              | this year across all mobile 
+              | and tablet platforms. This application looks to stir up a multi billion dollar
+              | industry by empowering businesses and consumers to easily survey and track the results.
+            p.text-block Mind Drive was conceptualized at the 2013 AT&T Summit Hackathon
+              | which took home the Blackberry Cascades API challenge and is looking to 
+              | break into an emerging application market for connected cars. This application 
+              | should be introduced in late 2013 in the new 2014 General Motors line of
+              | connected vehicles and will provide financial incentives to employers and employees.
+            br
+            .center
+              img(src='images/mini-logo.png', width='50px', height='auto')  
+              |   
+              img(src='images/mini-logo.png')  
+              |   
+              img(src='images/mini-logo.png', width='50px', height='auto')  
+            br
+            br
+            p.text-block We need your support! This is our first year of business and we wish to
+              | be great! This means we need money and talent. 
+              | There are currently no business
+              | opportunities being presented to the public but we are always willing to listen
+              img.float-l.img(src='images/help.png')
+              | to any proposals.
+            p.text-block Angel investors are welcomed and loved! If you wish to be an angel and
+              | wish to stay anonymous you just let us know
+              | . Those who would like to be listed
+              | on our front page as an angel investor please email us at support@themindspot.com. 
+              form(action='https://www.paypal.com/cgi-bin/webscr', method='post', target='_top')
+                input(type='hidden', name='cmd', value='_s-xclick')
+                input(type='hidden', name='hosted_button_id', value='5MKXHLNTL68WY')
+                input.float-r(type='image', src='https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif', border='0', name='submit', alt='Send us your support. And thank you in advance!')
+  #contact.section
+    .container
+      .content
+        .row
+          .span12
+            .title-l
+              h2 Contact
+                img.head-img(src='images/contact.png')
+              .hr.hr-small.hr-left
+                span.hr-inner
+              p Reach us in the following ways.
+          .span4
+            h4 Email
+            p feeds@themindspot.com
+            p support@themindspot.com
+            br
+            h4 Socialize With Us
+            .social
+              a(target='_blank', href='https://www.facebook.com/pages/The-Mind-Company/237231893018892')
+                i.icon-facebook-sign
+              a(target='_blank', href='https://twitter.com/TheMindSpot')
+                i.icon-twitter-sign
+              a(target='_blank', href='https://plus.google.com/104321729401342028595?prsrc=3')
+                i.icon-google-plus-sign
+            br
+            br
+            br
+          h4 Send A Message
+            .required_notification
+              font(color='#FF0033') *
+              |  Denotes Required Field
+          .span8
+            form(action='#', method='post', id='contact_form')
+              fieldset
+                ol
+                  li
+                    label.contact-form(for='name') Name
+                    input#name.input.contact-form(type='text', name='name', value='', size='40', maxlength='720')
+                  li
+                    label.contact-form(for='email') Email
+                    input#email.input.contact-form(type='email', name='email', value='', size='40', maxlength='720', required)
+                    br
+                  li
+                    label.contact-form(for='email') Subject
+                    input#subject.input.contact-form(type='text', name='email', value='', size='40', maxlength='720')
+                    br
+                  li
+                    label.contact-form(for='message') Description
+                    textarea#message.input.contact-form(name='message', rows='10', cols='57', required)
+                  li
+                    input.btn.float-r(type='submit', value='SUBMIT', size='', maxlength='')
+
+
+  #footer
+    &copy; 2013 The Mind Company

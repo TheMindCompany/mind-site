@@ -1,0 +1,19 @@
+extends layout
+block content
+  .hero.bg-fixed
+    .slogan
+      .vcenter.container
+        .row
+          .span12
+            .span4
+            form.span4(method='POST', action='/register')
+              .title-l
+                h4 Create Account
+              label.float-l(for='user') Email Address
+              input.input(name='user', type='email', required)
+              br
+              label.float-l(for='password') Password
+              input.input(name='password', type='password', required)
+              br
+              input.btn.float-r(value='Create', type='submit')
+            .span4

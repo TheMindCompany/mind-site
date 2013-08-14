@@ -1,0 +1,21 @@
+{
+  "name": "mind-site",
+  "version": "0.0.1",
+  "description":"The Mind Company Web Portal",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "latest",
+    "jade": "latest",
+    "mongoose":"latest",
+    "socket.io": "latest",
+    "connect": "latest",
+    "cookie": "latest"
+  },
+  "repository": {
+    "type":"git",
+    "url":"http://github.com/TheMindCompany/mind-site.git"
+  }
+}

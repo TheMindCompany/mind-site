@@ -1,0 +1,168 @@
+extends layout
+block content
+  br
+  br
+  br
+  br
+  #administration.section
+    .container
+      .content
+        .row
+          .span12
+            .title-l
+              h2 Administration
+  #blog.section.section-alt
+    .container
+      .content
+        .row
+          .span12
+            .span4
+              .title-l
+                h3 
+                  img.head-img(src='images/blog.png')
+                  |  Blog 
+                .hr.hr-small.hr-left
+                  span.hr-inner
+            .span7
+              h4 Add
+              .hr.hr-small.hr-left
+                span.hr-inner
+              br
+              br
+              br
+              form(method='POST', action='/blog/post', enctype='multipart/form-data')
+                if (blog_msg)
+                  p #{blog_msg}
+                label(for='blogaddtitle') Article Title
+                input.input(name='blog_add_title', required)
+                br
+                label(for='blog_add_date') Written On (Optional: Default current)
+                br
+                input.input(type='date', name='blog_add_date')
+                br
+                br
+                label(for='blog_add_image') Article Cover Image (Optional)
+                br
+                input(type='file', name='blog_add_image')
+                br
+                br
+                label(for='blog_add_article') Article Content
+                br
+                textarea.input(name='blog_add_article', rows='10', cols='57', required)
+                input.btn.float-r(type='submit', value='SUBMIT')
+              h4 Edit
+              .hr.hr-small.hr-left
+                span.hr-inner
+              form(method='POST', action='/blog/edit')
+                input.btn.btn-inverse(type='button', value='SELECT')
+              br
+              br
+              h4 Delete
+              .hr.hr-small.hr-left
+                span.hr-inner
+              form(method='POST', action='/blog/delete')
+                input.btn.btn-inverse(type='button', value='SELECT')
+  #tutorials.section
+    .container
+      .content
+        .row
+          .span12
+            .span4
+              .title-l
+                h3 
+                  img.head-img(src='images/tuts.png')
+                  |  Tutorials 
+            .span7
+              h4 Add
+              .hr.hr-small.hr-left
+                span.hr-inner
+              br
+              br
+              br
+              form(method='POST', action='/tuts/post', enctype='multipart/form-data')
+                label(for='tuts_add_title') Article Title
+                input.input(name='tuts_add_title', required)
+                br
+                label(for='tuts_add_date') Written On (Optional: Default current)
+                br
+                input.input(type='date', name='tuts_add_date')
+                br
+                br
+                label(for='tuts_add_image') Article Cover Image (Optional)
+                br
+                input(type='file', name='tuts_add_image')
+                br
+                br
+                label(for='tuts_add_article') Article Content
+                br
+                textarea.input(name='tuts_add_article', rows='10', cols='57', required)
+                input.btn.float-r(type='submit', value='SUBMIT')
+              h4 Edit
+              .hr.hr-small.hr-left
+                span.hr-inner
+              form(method='POST', action='/tuts/edit')
+                input.btn.btn-inverse(type='button', value='SELECT')
+              br
+              br
+              h4 Delete
+              .hr.hr-small.hr-left
+                span.hr-inner
+              form(method='POST', action='/tuts/delete')
+                input.btn.btn-inverse(type='button', value='SELECT')
+  #labratory.section.section-alt
+    .container
+      .content
+        .row
+          .span12
+            .span4
+              .title-l
+                h3 
+                  img.head-img(src='images/lab.png')
+                  |  Laboratory 
+            .span7
+              h4 Add
+              .hr.hr-small.hr-left
+                span.hr-inner
+              br
+              br
+              br
+              form(method='POST', action='/labs/post', enctype='multipart/form-data')
+                label(for='labs_add_title') Article Title
+                input.input(name='labs_add_title', required)
+                br
+                label(for='labs_add_date') Written On (Optional: Default current)
+                br
+                input.input(type='date', name='labs_add_date')
+                br
+                br
+                label(for='labs_add_image') Article Cover Image (Optional)
+                br
+                input(type='file', name='labs_add_image')
+                br
+                br
+                label(for='labs_add_article') Article Content
+                br
+                textarea.input(name='labs_add_article', rows='10', cols='57', required)
+                input.btn.float-r(type='submit', value='SUBMIT')
+              h4 Edit
+              .hr.hr-small.hr-left
+                span.hr-inner
+              form(method='POST', action='/labs/edit')
+                input.btn.btn-inverse(type='button', value='SELECT')
+              br
+              br
+              h4 Delete
+              .hr.hr-small.hr-left
+                span.hr-inner
+              form(method='POST', action='/labs/delete')
+                input.btn.btn-inverse(type='button', value='SELECT')
+  #users.section
+    .container
+      .content
+        .row
+          .span12
+            .title-l
+              h3 Users
+              .hr.hr-small.hr-left
+                span.hr-inner
+              p Add / Edit / Remove User Accounts 
