@@ -7,7 +7,35 @@ block content
           br
           br
           .title
-            h2 Labratory
+            h2 Labratory 
+              img.head-img(src='images/lab.png')
             .hr.hr-small.hr-center
               span.hr-inner
             p Read and see our research.
+  if(labs)
+    - var section = 1
+    for entry in labs
+      if(section == 1)        
+        - var section = 0
+        .section
+          .container
+            .content
+              .row
+                .text-block
+                  .title-l
+                    h3 #{entry.title}
+                      .hr.hr-small.hr-left
+                        span.hr-inner
+                  p #{entry.article}
+      else    
+        - var section = 1
+        .section.section-alt
+          .container
+            .content
+              .row
+                .text-block
+                  .title-l
+                    h3 #{entry.title}
+                      .hr.hr-small.hr-left
+                        span.hr-inner
+                  p #{entry.article}

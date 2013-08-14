@@ -1,12 +1,19 @@
 var Blog = require('./../lib/blog.js')
   , Tuts = require('./../lib/tuts.js')
   , Labs = require('./../lib/labs.js')
+  , Navi = require('./../lib/nav.js')
   , fs = require('fs');
 
 var Path = __dirname + '/..';
 
 exports.index = function(req, res){
-  res.render('admin', { title: 'The Mind Company | Administration Panel' });
+  Navi.navList('admin_panel', function(err, navItem){
+    if (err){
+      console.log(err);
+    } else {
+      res.render('admin', { title: 'The Mind Company | Administration Panel',  navi: navItem });
+    }
+  });
 };
 
 exports.blog_post = function(req, res){   

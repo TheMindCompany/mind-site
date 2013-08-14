@@ -30,12 +30,8 @@ html
               | Company
           #top-nav
             ul#fixed-nav
-              li.current
-                a(href='#home') Home
-              li
-                a(href='#news') News
-              li
-                a(href='#aboutus') About
-              li
-                a(href='#contact') Contact
+              if(navi)
+                for navItem in navi
+                  li 
+                    a(href='#{navItem.location}') #{navItem.title}
   block content

@@ -1,6 +1,7 @@
 var Blog = require('./../lib/blog.js')
   , Tuts = require('./../lib/tuts.js')
-  , Labs = require('./../lib/labs.js');
+  , Labs = require('./../lib/labs.js')
+  , Navi = require('./../lib/nav.js');
 
 exports.index = function(req, res){
   Blog.lastEntry(function (err, blog){
@@ -15,8 +16,13 @@ exports.index = function(req, res){
               if (err) {
                 console.log(err);
               } else if (lab) {
-                res.render('index', { title: 'The Mind Company', last_blog: blog, 
-                                      last_tut: tut, last_lab: lab });
+                Navi.navList('home', function(err, navItem){
+                  if (err){
+                    console.log(err);
+                  } else {
+                    res.render('index', { title: 'The Mind Company', navi: navItem, last_blog: blog, last_tut: tut, last_lab: lab });
+                  }
+                });
               }
             });
           }
@@ -26,13 +32,49 @@ exports.index = function(req, res){
 };
 
 exports.blog = function(req, res){
-  res.render('blog', { title: 'The Mind Company | Blog' });
+  Blog.blog(function (err, entry){
+    if (err) {
+      console.log(err);
+    } else if (entry) {
+      Navi.navList('return', function(err, navItem){
+        if (err){
+          console.log(err);
+        } else {
+          res.render('blog', { title: 'The Mind Company | Blog', navi: navItem, blog: entry });
+        }
+      });
+    }
+  });
 };
 
 exports.tuts = function(req, res){
-  res.render('tuts', { title: 'The Mind Company | Tutorials' });
+  Tuts.tuts(function (err, entry){
+    if (err) {
+      console.log(err);
+    } else if (entry) {
+      Navi.navList('return', function(err, navItem){
+        if (err){
+          console.log(err);
+        } else {
+          res.render('tuts', { title: 'The Mind Company | Tutorials', navi: navItem, tuts: entry });
+        }
+      });
+    }
+  });
 };
 
 exports.labs = function(req, res){
-  res.render('labs', { title: 'The Mind Company | Labratory' });
+  Labs.labs(function (err, entry){
+    if (err) {
+      console.log(err);
+    } else if (entry) {
+      Navi.navList('return', function(err, navItem){
+        if (err){
+          console.log(err);
+        } else {
+          res.render('labs', { title: 'The Mind Company | laboratory', navi: navItem, labs: entry });
+        }
+      });
+    }
+  });
 };

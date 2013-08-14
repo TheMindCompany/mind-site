@@ -56,7 +56,7 @@ app.post('/login', user.login);
 app.get('/', routes.index);
 app.get('/blog', routes.blog);
 app.get('/tutorials', routes.tuts);
-app.get('/labratory', routes.labs);
+app.get('/laboratory', routes.labs);
 
 // User Pages
 

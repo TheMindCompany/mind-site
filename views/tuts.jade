@@ -7,7 +7,35 @@ block content
           br
           br
           .title
-            h2 Tutorials
+            h2 Tutorials 
+              img.head-img(src='images/tuts.png')
             .hr.hr-small.hr-center
               span.hr-inner
             p Let us show you how.
+  if(tuts)
+    - var section = 1
+    for entry in tuts
+      if(section == 1)        
+        - var section = 0
+        .section
+          .container
+            .content
+              .row
+                .text-block
+                  .title-l
+                    h3 #{entry.title}
+                      .hr.hr-small.hr-left
+                        span.hr-inner
+                  p #{entry.article}
+      else    
+        - var section = 1
+        .section.section-alt
+          .container
+            .content
+              .row
+                .text-block
+                  .title-l
+                    h3 #{entry.title}
+                      .hr.hr-small.hr-left
+                        span.hr-inner
+                  p #{entry.article}
