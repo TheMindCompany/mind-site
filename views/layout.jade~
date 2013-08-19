@@ -33,7 +33,7 @@ html
               if(navi)
                 for navItem in navi
                   li 
-                    if(navItem.external === 'true')
+                    if(navItem.nav_home === 'return')
                       a.external(href='#{navItem.location}') #{navItem.title}
                     else
                       a(href='#{navItem.location}') #{navItem.title}
