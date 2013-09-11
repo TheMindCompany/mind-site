@@ -12,7 +12,8 @@
     "mongoose":"latest",
     "socket.io": "latest",
     "connect": "latest",
-    "cookie": "latest"
+    "cookie": "latest",
+    "nodemailer": "latest"
   },
   "repository": {
     "type":"git",

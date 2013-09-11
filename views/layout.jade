@@ -8,17 +8,8 @@ html
     meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
     meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
 
-
-    link(rel='stylesheet', href='css/main.css')
-    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css')
-    script(src='/socket.io/socket.io.js')
-    script(src='/js/socket.js')
-    script(src='/js/jquery.min.js')
-    script(src='/js/jquery.easing.min.js')
-    script(src='/js/jquery.scrollto.min.js')
-    script(src='/js/slabtext.min.js')
-    script(src='/js/jquery.nav.js')
-    script(src='/js/main.js')
+    block head
+    
   body.home.color-1
     #header
       .container
@@ -31,8 +22,9 @@ html
           #top-nav
             ul#fixed-nav
               if(navi)
+                block navigation
                 for navItem in navi
-                  li 
+                  li
                     if(navItem.external === 'true')
                       a.external(href='#{navItem.location}') #{navItem.title}
                     else

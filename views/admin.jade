@@ -1,4 +1,19 @@
 extends layout
+
+block head
+  link(rel='stylesheet', href='css/main.css')
+  link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css')
+  script(src='/js/jq/jquery.min.js')
+  script(src='/js/jq/jquery.easing.min.js')
+  script(src='/js/jq/jquery.scrollto.min.js')
+  script(src='/js/jq/jquery.nav.js')
+  script(src='/js/slabtext.min.js')
+  script(src='/socket.io/socket.io.js')
+  script(src='/js/socket.js')
+  script(src='/js/main.js')
+  script(src='/js/wysi/advanced.js')
+  script(src='/js/wysi/wysihtml5-0.3.0.min.js')
+
 block content
   br
   br
@@ -19,7 +34,7 @@ block content
             .span4
               .title-l
                 h3 
-                  img.head-img(src='images/blog.png')
+                  img.header-img(src='images/blog.png')
                   |  Blog 
                 .hr.hr-small.hr-left
                   span.hr-inner
@@ -34,7 +49,8 @@ block content
                 if (blog_msg)
                   p #{blog_msg}
                 label(for='blogaddtitle') Article Title
-                input.input(name='blog_add_title', required)
+                input.input(name='blog_add_title', required)  
+                input.input(name='blog_add_html', value="", hidden)
                 br
                 label(for='blog_add_date') Written On (Optional: Default current)
                 br
@@ -47,8 +63,30 @@ block content
                 br
                 br
                 label(for='blog_add_article') Article Content
-                br
-                textarea.input(name='blog_add_article', rows='10', cols='57', required)
+                #wysihtml5-toolbar(style='display: none;')
+                  input.btn.btn-icon.btn-start(type='button', data-wysihtml5-command='justifyRight', data-wysihtml5-command-value='right', style='background-image:url(images/toolbar/right.png);')
+                  input.btn.btn-icon.btn-mid(type='button', data-wysihtml5-command='justifyCenter', data-wysihtml5-command-value='center', style='background-image:url(images/toolbar/center.png);')
+                  input.btn.btn-icon.btn-end(type='button', data-wysihtml5-command='justifyLeft', data-wysihtml5-command-value='left', style='background-image:url(images/toolbar/left.png);')
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  input.btn.btn-icon.btn-start(type='button', data-wysihtml5-command='bold', style='background-image:url(images/toolbar/bold.png);')
+                  input.btn.btn-icon.btn-mid(type='button', data-wysihtml5-command='italic', style='background-image:url(images/toolbar/italic.png);')
+                  input.btn.btn-icon.btn-mid(type='button', data-wysihtml5-command='underline', style='background-image:url(images/toolbar/underline.png);')
+                  input.btn.btn-icon.btn-mid(type='button', data-wysihtml5-command='insertUnorderedList', style='background-image:url(images/toolbar/bullets.png);')
+                  input.btn.btn-icon.btn-end(type='button', data-wysihtml5-command='insertOrderedList', style='background-image:url(images/toolbar/numbers.png);')
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  input.btn.btn-icon.btn-start(type='button', data-wysihtml5-command='createLink', style='background-image:url(images/toolbar/link.png);')
+                  input.btn.btn-icon.btn-end(type='button', data-wysihtml5-command='insertImage', style='background-image:url(images/toolbar/picture.png);')
+                  #edit-link(data-wysihtml5-dialog='createLink', style='display: none;') 
+                    input.input(data-wysihtml5-dialog-field='href', value='http://', class='text') 
+                    input.btn(type='button', data-wysihtml5-dialog-action='save', value='OK')   
+                    &nbsp;&nbsp;
+                    input.btn.btn-inverse(type='button', data-wysihtml5-dialog-action='cancel', value='Cancel')  
+                  #edit-image(data-wysihtml5-dialog='insertImage', style='display: none;') 
+                    input.input(data-wysihtml5-dialog-field='src', value='http://', class='text') 
+                    input.btn(type='button', data-wysihtml5-dialog-action='save', value='OK')   
+                    &nbsp;&nbsp;
+                    input.btn.btn-inverse(type='button', data-wysihtml5-dialog-action='cancel', value='Cancel') 
+                textarea#wysihtml5-textarea.input(name='blog_add_article', rows='10', cols='57')
                 input.btn.float-r(type='submit', value='SUBMIT')
               h4 Edit
               .hr.hr-small.hr-left
@@ -70,7 +108,7 @@ block content
             .span4
               .title-l
                 h3 
-                  img.head-img(src='images/tuts.png')
+                  img.header-img(src='images/tuts.png')
                   |  Tutorials 
             .span7
               h4 Add
@@ -93,9 +131,31 @@ block content
                 input(type='file', name='tuts_add_image')
                 br
                 br
-                label(for='tuts_add_article') Article Content
-                br
-                textarea.input(name='tuts_add_article', rows='10', cols='57', required)
+                label(for='tuts_add_article') Article Content           
+                #wysihtml5-toolbar-tuts(style='display: none;')
+                  input.btn.btn-icon.btn-start(type='button', data-wysihtml5-command='justifyRight', data-wysihtml5-command-value='right', style='background-image:url(images/toolbar/right.png);')
+                  input.btn.btn-icon.btn-mid(type='button', data-wysihtml5-command='justifyCenter', data-wysihtml5-command-value='center', style='background-image:url(images/toolbar/center.png);')
+                  input.btn.btn-icon.btn-end(type='button', data-wysihtml5-command='justifyLeft', data-wysihtml5-command-value='left', style='background-image:url(images/toolbar/left.png);')
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  input.btn.btn-icon.btn-start(type='button', data-wysihtml5-command='bold', style='background-image:url(images/toolbar/bold.png);')
+                  input.btn.btn-icon.btn-mid(type='button', data-wysihtml5-command='italic', style='background-image:url(images/toolbar/italic.png);')
+                  input.btn.btn-icon.btn-mid(type='button', data-wysihtml5-command='underline', style='background-image:url(images/toolbar/underline.png);')
+                  input.btn.btn-icon.btn-mid(type='button', data-wysihtml5-command='insertUnorderedList', style='background-image:url(images/toolbar/bullets.png);')
+                  input.btn.btn-icon.btn-end(type='button', data-wysihtml5-command='insertOrderedList', style='background-image:url(images/toolbar/numbers.png);')
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  input.btn.btn-icon.btn-start(type='button', data-wysihtml5-command='createLink', style='background-image:url(images/toolbar/link.png);')
+                  input.btn.btn-icon.btn-end(type='button', data-wysihtml5-command='insertImage', style='background-image:url(images/toolbar/picture.png);')
+                  #edit-link(data-wysihtml5-dialog='createLink', style='display: none;') 
+                    input.input(data-wysihtml5-dialog-field='href', value='http://', class='text') 
+                    input.btn(type='button', data-wysihtml5-dialog-action='save', value='OK')   
+                    &nbsp;&nbsp;
+                    input.btn.btn-inverse(type='button', data-wysihtml5-dialog-action='cancel', value='Cancel')  
+                  #edit-image(data-wysihtml5-dialog='insertImage', style='display: none;') 
+                    input.input(data-wysihtml5-dialog-field='src', value='http://', class='text') 
+                    input.btn(type='button', data-wysihtml5-dialog-action='save', value='OK')   
+                    &nbsp;&nbsp;
+                    input.btn.btn-inverse(type='button', data-wysihtml5-dialog-action='cancel', value='Cancel') 
+                textarea#wysihtml5-textarea-tuts.input(name='tuts_add_article', rows='10', cols='57')
                 input.btn.float-r(type='submit', value='SUBMIT')
               h4 Edit
               .hr.hr-small.hr-left
@@ -117,7 +177,7 @@ block content
             .span4
               .title-l
                 h3 
-                  img.head-img(src='images/lab.png')
+                  img.header-img(src='images/lab.png')
                   |  Laboratory 
             .span7
               h4 Add
@@ -141,8 +201,30 @@ block content
                 br
                 br
                 label(for='labs_add_article') Article Content
-                br
-                textarea.input(name='labs_add_article', rows='10', cols='57', required)
+                #wysihtml5-toolbar-labs(style='display: none;')
+                  input.btn.btn-icon.btn-start(type='button', data-wysihtml5-command='justifyRight', data-wysihtml5-command-value='right', style='background-image:url(images/toolbar/right.png);')
+                  input.btn.btn-icon.btn-mid(type='button', data-wysihtml5-command='justifyCenter', data-wysihtml5-command-value='center', style='background-image:url(images/toolbar/center.png);')
+                  input.btn.btn-icon.btn-end(type='button', data-wysihtml5-command='justifyLeft', data-wysihtml5-command-value='left', style='background-image:url(images/toolbar/left.png);')
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  input.btn.btn-icon.btn-start(type='button', data-wysihtml5-command='bold', style='background-image:url(images/toolbar/bold.png);')
+                  input.btn.btn-icon.btn-mid(type='button', data-wysihtml5-command='italic', style='background-image:url(images/toolbar/italic.png);')
+                  input.btn.btn-icon.btn-mid(type='button', data-wysihtml5-command='underline', style='background-image:url(images/toolbar/underline.png);')
+                  input.btn.btn-icon.btn-mid(type='button', data-wysihtml5-command='insertUnorderedList', style='background-image:url(images/toolbar/bullets.png);')
+                  input.btn.btn-icon.btn-end(type='button', data-wysihtml5-command='insertOrderedList', style='background-image:url(images/toolbar/numbers.png);')
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  input.btn.btn-icon.btn-start(type='button', data-wysihtml5-command='createLink', style='background-image:url(images/toolbar/link.png);')
+                  input.btn.btn-icon.btn-end(type='button', data-wysihtml5-command='insertImage', style='background-image:url(images/toolbar/picture.png);')
+                  #edit-link(data-wysihtml5-dialog='createLink', style='display: none;') 
+                    input.input(data-wysihtml5-dialog-field='href', value='http://', class='text') 
+                    input.btn(type='button', data-wysihtml5-dialog-action='save', value='OK')   
+                    &nbsp;&nbsp;
+                    input.btn.btn-inverse(type='button', data-wysihtml5-dialog-action='cancel', value='Cancel')  
+                  #edit-image(data-wysihtml5-dialog='insertImage', style='display: none;') 
+                    input.input(data-wysihtml5-dialog-field='src', value='http://', class='text') 
+                    input.btn(type='button', data-wysihtml5-dialog-action='save', value='OK')   
+                    &nbsp;&nbsp;
+                    input.btn.btn-inverse(type='button', data-wysihtml5-dialog-action='cancel', value='Cancel') 
+                textarea#wysihtml5-textarea-labs.input(name='labs_add_article', rows='10', cols='57')
                 input.btn.float-r(type='submit', value='SUBMIT')
               h4 Edit
               .hr.hr-small.hr-left
@@ -166,3 +248,4 @@ block content
               .hr.hr-small.hr-left
                 span.hr-inner
               p Add / Edit / Remove User Accounts 
+  script(src='/js/wysi/wysihtml5-toolbar.js')

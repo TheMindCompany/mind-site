@@ -1,4 +1,17 @@
 extends layout
+
+block head
+  link(rel='stylesheet', href='css/main.css')
+  link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css')
+  script(src='/js/jq/jquery.min.js')
+  script(src='/js/jq/jquery.easing.min.js')
+  script(src='/js/jq/jquery.scrollto.min.js')
+  script(src='/js/jq/jquery.nav.js')
+  script(src='/js/slabtext.min.js')
+  script(src='/socket.io/socket.io.js')
+  script(src='/js/socket.js')
+  script(src='/js/main.js')
+
 block content
   #labs.section
     .container
@@ -8,7 +21,7 @@ block content
           br
           .title
             h2 Labratory 
-              img.head-img(src='images/lab.png')
+              img.header-img(src='images/lab.png')
             .hr.hr-small.hr-center
               span.hr-inner
             p Read and see our research.
@@ -23,10 +36,19 @@ block content
               .row
                 .text-block
                   .title-l
-                    h3 #{entry.title}
-                      .hr.hr-small.hr-left
-                        span.hr-inner
-                  p #{entry.article}
+                    a(href='laboratory/#{entry.html}')
+                      h3 #{entry.title}
+                      p.small #{entry.written}
+                        .hr.hr-small.hr-left
+                          span.hr-inner
+                  p 
+                    if (entry.head_image)
+                      img.float-l.head-img(src='laboratory/images/#{entry.head_image}')
+                    !{entry.article}
+                  br
+                  p.float-r Written by:
+                    br
+                    a(href='/profile/#{entry.author}') #{entry.author_name}
       else    
         - var section = 1
         .section.section-alt
@@ -35,7 +57,18 @@ block content
               .row
                 .text-block
                   .title-l
-                    h3 #{entry.title}
-                      .hr.hr-small.hr-left
-                        span.hr-inner
-                  p #{entry.article}
+                    a(href='laboratory/#{entry.html}')
+                      h3 #{entry.title}
+                      p.small #{entry.written}
+                        .hr.hr-small.hr-left
+                          span.hr-inner
+                  p 
+                    if (entry.head_image)
+                      img.float-l.head-img(src='laboratory/images/#{entry.head_image}')
+                    !{entry.article}
+                  br
+                  p.float-r Written by:
+                    br
+                    a(href='/profile/#{entry.author}') #{entry.author_name}
+  #footer
+    &copy; 2013 The Mind Company

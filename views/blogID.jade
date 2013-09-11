@@ -1,0 +1,58 @@
+extends layout
+
+block head
+  link(rel='stylesheet', href='../css/main.css')
+  link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css')
+  script(src='/js/jq/jquery.min.js')
+  script(src='/js/jq/jquery.easing.min.js')
+  script(src='/js/jq/jquery.scrollto.min.js')
+  script(src='/js/jq/jquery.nav.js')
+  script(src='/js/slabtext.min.js')
+  script(src='/socket.io/socket.io.js')
+  script(src='/js/socket.js')
+  script(src='/js/main.js')
+  script(src='/js/social.js')
+  
+block navigation
+  li
+    a.external(href='previous.html', onClick='history.back();return false;') Back 
+  li
+    p | 
+
+block content
+  #blog.hero.section-alt
+    .slogan
+      if(blog)
+        .container
+          .content
+            .row
+              .text-block.span9
+                br
+                br
+                .title-l
+                  h2 #{blog.title}
+                  p.small #{blog.written}
+                    .hr.hr-small.hr-left
+                      span.hr-inner
+                p 
+                  if (blog.head_image)
+                    img.float-l.head-img(src='images/#{blog.head_image}')
+                  !{blog.article}
+                br
+                p.float-r Written by:
+                  br
+                  a(href='/profiles/#{blog.author}') #{blog.author_name}
+                .shareaholic-canvas(data-app='share_buttons', data-app-id='265515')
+              #side-menu.text-right.span3
+                br
+                br
+                .title-r
+                  a(href='/blog')
+                    h3 Other Blog Entries
+                      .hr.hr-small.hr-right
+                        span.hr-inner
+                for blogs in blog_entries
+                  li
+                    a(href='#{blogs.html}') #{blogs.title} 
+  #footer
+    &copy; 2013 The Mind Company

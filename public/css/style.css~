@@ -546,7 +546,7 @@ input.input-small {
 label.contact-form{
   width: 15%;
   margin: 0px 0px 10px 0px;
-	padding:0px 0px 18px 0px;
+	padding:0px 0px 15px 0px;
 	color: #666;
 	font-size: 13px;
   float: left;}

@@ -1,0 +1,104 @@
+extends layout
+
+block head
+  link(rel='stylesheet', href='/css/main.css')
+  link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css')
+  script(src='/js/jq/jquery.min.js')
+  script(src='/js/jq/jquery.easing.min.js')
+  script(src='/js/jq/jquery.scrollto.min.js')
+  script(src='/js/jq/jquery.nav.js')
+  script(src='/js/slabtext.min.js')
+  script(src='/socket.io/socket.io.js')
+  script(src='/js/socket.js')
+  script(src='/js/main.js')
+
+block navigation
+  li
+    a.external(href='previous.html', onClick='history.back();return false;') Back 
+  li
+    p | 
+
+block content
+  br
+  br
+  br
+  br
+  .section
+    .container
+      .content
+        .row
+          .span12
+            .title-l
+              img.span3(src='/users/images/#{profile.user_image}')
+              h2.span8 Edit Profile
+  form(action='', method='POST')
+    .section.section-alt
+      .container
+        .content
+          .row
+            .span12
+              .span4
+                .title-l
+                  h3 Name 
+                  .hr.hr-small.hr-left
+                    span.hr-inner
+              .span7
+                label(for='first') First Name
+                input.input(name='first', value='#{profile.first}')
+                label(for='middle') Middle Name
+                input.input(name='middle', value='#{profile.middle}')
+                label(for='last') Last Name
+                input.input(name='last', value='#{profile.last}')
+    .section
+      .container
+        .content
+          .row
+            .span12
+              .span4
+                .title-l
+                  h3 Personal Details (Optional) 
+                  .hr.hr-small.hr-left
+                    span.hr-inner
+              .span7
+                label(for='birth') Birth Date
+                br
+                input(type='date', name='birth', value='#{profile.birth}')
+                br
+                label(for='gender') Sex
+                input.input(name='gender', value='#{profile.gender}')
+                label(for='about') About
+                textarea.input(name='about', placeholder='#{profile.about}', rows='10', cols='57')
+    .section.section-alt
+      .container
+        .content
+          .row
+            .span12
+              .span4
+                .title-l
+                  h3 Address (Optional) 
+                  .hr.hr-small.hr-left
+                    span.hr-inner
+              .span7
+                label(for='city') City | State
+                input.input(name='city', value='#{profile.city}') 
+                input.input(name='state', value='#{profile.state}')
+    .section
+      .container
+        .content
+          .row
+            .span12
+              .span4
+                .title-l
+                  h3 Favorite Quote (Optional) 
+                  .hr.hr-small.hr-left
+                    span.hr-inner
+              .span7
+                label(for='fav_quote') Quote
+                textarea.input(name='fav_quote', placeholder='#{profile.fav_quote}', rows='3', cols='55')
+                label(for='fav_quote') Author
+                input.input(name='fav_quote_author', value='#{profile.fav_quote_author}') 
+                br
+                br
+                input.float-r.btn(type='submit', value='Submit')
+  #footer
+    &copy; 2013 The Mind Company

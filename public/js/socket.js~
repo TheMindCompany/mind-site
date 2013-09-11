@@ -9,3 +9,9 @@ socket.on('error', function(err) {
 socket.on('connect', function() {
 
 });
+
+
+function aDate ( date ) {
+  
+  return date;
+}

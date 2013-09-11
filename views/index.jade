@@ -1,4 +1,17 @@
 extends layout
+
+block head
+  link(rel='stylesheet', href='css/main.css')
+  link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css')
+  script(src='/js/jq/jquery.min.js')
+  script(src='/js/jq/jquery.easing.min.js')
+  script(src='/js/jq/jquery.scrollto.min.js')
+  script(src='/js/jq/jquery.nav.js')
+  script(src='/js/slabtext.min.js')
+  script(src='/socket.io/socket.io.js')
+  script(src='/js/socket.js')
+  script(src='/js/main.js')
+
 block content
   #home.hero.bg-fixed.bg-color
     .slogan
@@ -21,16 +34,19 @@ block content
             .center
               a(href='blog')
                 img(src='images/blog.png')
-            h3 
-              center Our Blog
+                h3 
+                  center Our Blog
             .hr.hr-small.hr-center
               span.hr-inner
             .text-block.news-height
               if(last_blog)
                 .title
-                  a(href='#{last_blog.title}')
+                  a(href='blog/#{last_blog.html}')
                     h5 #{last_blog.title}
-                p #{last_blog.article}
+                p 
+                  if (last_blog.head_image)
+                    img.float-l.head-img(src='blog/images/#{last_blog.head_image}', style='width:50%; height: auto;')
+                  !{last_blog.article}
             .hr.hr-small.hr-center
               span.hr-inner
             .float-r
@@ -43,16 +59,19 @@ block content
             .center
               a(href='tutorials')
                 img(src='images/tuts.png')
-            h3 
-              center Tutorials
+                h3 
+                  center Tutorials
             .hr.hr-small.hr-center
               span.hr-inner
             .text-block.news-height
               if(last_tut)
                 .title
-                  a(href='#{last_tut.title}')
+                  a(href='tutorials/#{last_tut.html}')
                     h5 #{last_tut.title}
-                p #{last_tut.article}
+                p 
+                  if (last_tut.head_image)
+                    img.float-r.head-img(src='tutorials/images/#{last_tut.head_image}', style='width:50%; height: auto;')
+                  !{last_tut.article}
             .hr.hr-small.hr-center
               span.hr-inner
             .float-r
@@ -65,16 +84,19 @@ block content
             .center
               a(href='laboratory')
                 img(src='images/lab.png')
-            h3 
-              center Laboratory
+                h3 
+                  center Laboratory
             .hr.hr-small.hr-center
               span.hr-inner
             .text-block.news-height
               if(last_lab)
                 .title
-                  a(href='#{last_lab.title}')
+                  a(href='laboratory/#{last_lab.html}')
                     h5 #{last_lab.title}
-                p #{last_lab.article}
+                p 
+                  if (last_lab.head_image)
+                    img.float-r.head-img(src='laboratory/images/#{last_lab.head_image}', style='width:50%; height: auto;')
+                  !{last_lab.article}
             .hr.hr-small.hr-center
               span.hr-inner
             .float-r
@@ -132,7 +154,7 @@ block content
           .span12
             .title-l
               h2 Contact
-                img.head-img(src='images/contact.png')
+                img.header-img(src='images/contact.png')
               .hr.hr-small.hr-left
                 span.hr-inner
               p Reach us in the following ways.
@@ -157,23 +179,21 @@ block content
               font(color='#FF0033') *
               |  Denotes Required Field
           .span8
-            form(action='#', method='post', id='contact_form')
+            form(action='/email', method='post', id='contact_form')
               fieldset
                 ol
                   li
                     label.contact-form(for='name') Name
-                    input#name.input.contact-form(type='text', name='name', value='', size='40', maxlength='720')
+                    input.input.contact-form.input-half(type='text', name='name', value='')
                   li
                     label.contact-form(for='email') Email
-                    input#email.input.contact-form(type='email', name='email', value='', size='40', maxlength='720', required)
-                    br
+                    input.input.contact-form.input-half(type='email', name='email', value='')
                   li
-                    label.contact-form(for='email') Subject
-                    input#subject.input.contact-form(type='text', name='email', value='', size='40', maxlength='720')
-                    br
+                    label.contact-form(for='subject') Subject
+                    input.input.contact-form.input-half(type='text', name='subject', value='')
                   li
                     label.contact-form(for='message') Description
-                    textarea#message.input.contact-form(name='message', rows='10', cols='57', required)
+                    textarea.input.contact-form(name='message', rows='10', cols='57', required)
                   li
                     input.btn.float-r(type='submit', value='SUBMIT', size='', maxlength='')
 

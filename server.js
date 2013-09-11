@@ -46,6 +46,9 @@ var routes = require('./routes')
   , user = require('./routes/user')
   , admin = require('./routes/admin');
 
+// General functions
+app.post('/email', routes.email);
+
 // Registrastion & Login
 app.get('/register', user.registerform);
 app.post('/register', user.register);
@@ -54,12 +57,20 @@ app.post('/login', user.login);
 
 // General Pages
 app.get('/', routes.index);
+// Blog
 app.get('/blog', routes.blog);
+app.get('/blog/:htmlID', routes.blogID);
+// Tutorials
 app.get('/tutorials', routes.tuts);
+app.get('/tutorials/:htmlID', routes.tutsID);
+// Labs
 app.get('/laboratory', routes.labs);
+app.get('/laboratory/:htmlID', routes.labsID);
 
-// User Pages
-
+// Account Pages
+app.get('/profile/:profileID', user.profile);
+app.get('/profile/:profileID/edit', user.profileEdit);
+app.post('/profile/:profileID/edit', user.profilePost);
 // Admin Pages
 app.get('/admin-panel', Auth.admin, admin.index);
 app.post('/blog/post', Auth.admin, admin.blog_post);

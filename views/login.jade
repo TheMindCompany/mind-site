@@ -1,4 +1,17 @@
 extends layout
+
+block head
+  link(rel='stylesheet', href='css/main.css')
+  link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css')
+  script(src='/js/jq/jquery.min.js')
+  script(src='/js/jq/jquery.easing.min.js')
+  script(src='/js/jq/jquery.scrollto.min.js')
+  script(src='/js/jq/jquery.nav.js')
+  script(src='/js/slabtext.min.js')
+  script(src='/socket.io/socket.io.js')
+  script(src='/js/socket.js')
+  script(src='/js/main.js')
+
 block content
   .hero.bg-fixed
     .slogan
@@ -23,3 +36,5 @@ block content
                 br
                 p #{msg}
             .span4
+  #footer
+    &copy; 2013 The Mind Company

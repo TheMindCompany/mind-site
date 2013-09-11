@@ -1,0 +1,28 @@
+
+              #side-menu.text-right.span3
+                br
+                br
+                .title-r
+                  a(href='/blog')
+                    h3 Blog Post
+                      .hr.hr-small.hr-right
+                        span.hr-inner
+                for blogs in blog_entries
+                  li
+                    a(href='#{blogs.html}') #{blogs.title} 
+                .title-r
+                  a(href='/tutorials')
+                    h3 Tutorial Post
+                      .hr.hr-small.hr-right
+                        span.hr-inner
+                for tuts in tut_entries
+                  li
+                    a(href='#{tuts.html}') #{tuts.title} 
+                .title-r
+                  a(href='/laboratory')
+                    h3 Laboratory Post
+                      .hr.hr-small.hr-right
+                        span.hr-inner
+                for labs in lab_entries
+                  li
+                    a(href='#{labs.html}') #{labs.title} 

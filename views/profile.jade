@@ -1,0 +1,46 @@
+extends layout
+
+block head
+  link(rel='stylesheet', href='../css/main.css')
+  link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css')
+  script(src='/js/jq/jquery.min.js')
+  script(src='/js/jq/jquery.easing.min.js')
+  script(src='/js/jq/jquery.scrollto.min.js')
+  script(src='/js/jq/jquery.nav.js')
+  script(src='/js/slabtext.min.js')
+  script(src='/socket.io/socket.io.js')
+  script(src='/js/socket.js')
+  script(src='/js/main.js')
+
+block content
+  #profile.hero
+    .slogan
+      if(profile)
+        .container
+          .content
+            .row
+              .text-block.span9
+                br
+                br
+                .span2
+                  if (profile.user_image)
+                    img(src='/users/images/#{profile.user_image}')
+                .text-left.span6
+                  h2 #{profile.first} #{profile.middle} #{profile.last}
+                    p #{profile.city}, #{profile.state}
+                    .hr.hr-small.hr-left
+                      span.hr-inner
+                  p Email: #{profile._id.user}
+              .span3(height='100%')
+                p a
+            br
+              .hr.hr-small.hr
+                span.hr-inner
+            br
+            h3.span9 !{profile.fav_quote}
+            br
+            br
+            br
+            p.text-block.span9 !{profile.about}
+  #footer
+    &copy; 2013 The Mind Company

@@ -1,0 +1,27 @@
+var editor = new wysihtml5.Editor("wysihtml5-textarea", {
+  toolbar:      "wysihtml5-toolbar", 
+  stylesheets   : ['/css/style.css'],
+  parserRules:  wysihtml5ParserRules, // defined in parser rules set 
+  useLineBreaks : false,
+  cleanUp       : true
+});
+
+var tuts = new wysihtml5.Editor("wysihtml5-textarea-tuts", {
+  toolbar:      "wysihtml5-toolbar-tuts", 
+  stylesheets   : ['/css/style.css'],
+  parserRules:  wysihtml5ParserRules, // defined in parser rules set 
+  useLineBreaks : false,
+  cleanUp       : true
+});
+  
+var labs = new wysihtml5.Editor("wysihtml5-textarea-labs", {
+  toolbar:      "wysihtml5-toolbar-labs", 
+  stylesheets   : ['/css/style.css'],
+  parserRules:  wysihtml5ParserRules, // defined in parser rules set 
+  useLineBreaks : false,
+  cleanUp       : true
+});
+
+                  // todo
+                  // &nbsp;
+                  // input.btn.btn-icon(type='button', data-wysihtml5-command='justifyJustify', style='background-image:url(images/toolbar/justify.png);') 
